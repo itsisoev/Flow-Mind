@@ -1,0 +1,37 @@
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {Sidebar} from './sidebar';
+import {ThemeToggle} from '../theme-toggle/theme-toggle';
+
+describe('Sidebar Component', () => {
+  let fixture: ComponentFixture<Sidebar>;
+  let component: Sidebar;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [Sidebar, ThemeToggle],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(Sidebar);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  })
+
+  it('should have as sidebarOpen false by default', () => {
+    expect(component).toBeTruthy();
+  })
+
+  it('should have sidebarOpen false by default', () => {
+    expect(component.isSidebarOpen).toBeFalse();
+  });
+
+  it('should toggle sidebarOpen to true', () => {
+    component.toggleSidebar();
+    expect(component.isSidebarOpen).toBeTrue();
+  });
+
+  it('should toggle sidebarOpen back to false after two toggles', () => {
+    component.toggleSidebar();
+    component.toggleSidebar();
+    expect(component.isSidebarOpen).toBeFalse();
+  });
+})

@@ -1,0 +1,29 @@
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.sidebar-button {
+  width: 100%;
+  height: 2.1875rem;
+  color: var(--text-color);
+  border-radius: 0.3125rem;
+  background-color: transparent;
+  text-align: left;
+  padding: 0 0.625rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  border: 2px solid var(--border-accent);
+}
+
+.hamburger-menu {
+  background-color: transparent;
+  color: var(--text-color);
+  position: fixed;
+  z-index: 1001;
+  right: 1.25rem;
+  top: 1.25rem;
+}
