@@ -1,0 +1,13 @@
+input {
+  outline: none;
+  border: none;
+}
+
+.auth-input {
+  width: 100%;
+  height: 2.5rem  ;
+  padding: 0 0.9375rem;
+  border-radius: 0.3125rem;
+  color: var(--text-color);
+  background-color: var(--input-auth);
+}

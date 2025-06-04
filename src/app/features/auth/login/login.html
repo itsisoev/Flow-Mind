@@ -1,0 +1,20 @@
+<div class="auth-container">
+  <form class="auth-container__form" [formGroup]="authForm" (submit)="onSubmit()">
+    <div class="auth-container__header">
+      <h3>Войти в аккаунт</h3>
+    </div>
+
+    <div class="input-group">
+      <input type="text" class="auth-input" placeholder="User Name" formControlName="username">
+    </div>
+
+    <div class="input-group">
+      <input type="password" class="auth-input" placeholder="Password" formControlName="password">
+    </div>
+
+    <div class="btns-group">
+      <button class="auth-button">Войти</button>
+      <a routerLink="/auth/register">Регистрация</a>
+    </div>
+  </form>
+</div>
