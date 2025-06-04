@@ -1,0 +1,35 @@
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 9.375rem;
+
+  &__form {
+    width: 20rem;
+
+    .input-group {
+      margin-top: 0.625rem;
+    }
+
+    .btns-group {
+      gap: 0.9375rem;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 1rem;
+    }
+  }
+
+  &__header {
+    margin-bottom: 1.25rem;
+
+    h3 {
+      color: var(--text-color);
+      text-align: left;
+      font-weight: bold;
+    }
+
+  }
+}
+

@@ -1,43 +1,49 @@
 :root {
-  --bg-primary: #f4f6f8;
+  --bg-primary: #f8f5f2;
   --message-surface: #ffffffcc;
-  --border-sharp: #dce3ea;
+  --border-sharp: #e0d6cc;
   --white: #ffffff;
-  --black: #000000;
-  --gray-50: #f9fafb;
-  --gray-100: #f1f5f9;
-  --gray-200: #e2e8f0;
-  --gray-300: #cbd5e1;
-  --gray-400: #94a3b8;
-  --gray-500: #64748b;
-  --gray-600: #475569;
-  --gray-700: #334155;
-  --gray-750: #2b3545;
-  --gray-800: #1e293b;
-  --gray-900: #0f172a;
-  --gray-950: #020617;
+  --black: #1a1a1a;
 
-  --red-500: #ef4444;
-  --red-700: #b91c1c;
-  --brand-purple: #8b5cf6;
-  --yellow-900: #78350f;
+  --gray-50: #f9f8f7;
+  --gray-100: #f0edeb;
+  --gray-200: #e5e0dc;
+  --gray-300: #d5cec7;
+  --gray-400: #a99e94;
+  --gray-500: #7a6f66;
+  --gray-600: #5a5149;
+  --gray-700: #3a332d;
+  --gray-750: #2b2621;
+  --gray-800: #1f1b17;
+  --gray-900: #141210;
+  --gray-950: #0a0807;
+
+  --red-500: #c73e3a;
+  --red-700: #9a2e2b;
+  --brand-purple: #6a4c9c;
+  --yellow-900: #5c4a2a;
 
   --sharp-edge-top-shadow: 0 1px 0 var(--border-sharp);
   --user-chat-width: 70%;
   --sidebar-width: 16.25rem;
   --header-height: 3.75rem;
 
-  --sidebar-background: #f1f5f9;
-  --text-color: #1e293b;
-  --background-color: #f8fafc;
+  --sidebar-background: #f0edeb;
+  --text-color: #1a1a1a;
+  --background-color: #f8f5f2;
   --background-card: var(--white);
-  --border-accent: #cbd5e1
+  --border-accent: #d5cec7;
+
+  --input-auth: #dedede;
+  --button-auth: #c8c8c8;
 }
 
 .dark-theme {
-  --text-color: #f8fafc;
-  --background-color: #0f172a;
-  --background-card: #1e293b;
-  --sidebar-background: #1e293b;
-  --border-accent: #334155;
+  --text-color: #f0e6dd;
+  --background-color: #1a1a1a;
+  --background-card: #2b2621;
+  --sidebar-background: #2b2621;
+  --border-accent: #5a5149;
+  --input-auth: #2d2d2d;
+  --button-auth: #efefef;
 }

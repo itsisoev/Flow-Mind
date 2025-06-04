@@ -27,3 +27,10 @@ button {
   right: 1.25rem;
   top: 1.25rem;
 }
+
+.auth-button {
+  width: 9.375rem;
+  height: 1.875rem;
+  border-radius: 0.3125rem;
+  background-color: var(--button-auth);
+}
