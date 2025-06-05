@@ -1,10 +1,14 @@
-import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import {ThemeToggle} from '../theme-toggle/theme-toggle';
+import {Translation} from '../translation/translation';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'layout-sidebar',
   imports: [
-    ThemeToggle
+    ThemeToggle,
+    Translation,
+    TranslatePipe
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',

@@ -6,6 +6,7 @@ import {AuthService} from '../../../core/services/auth';
 import {of, throwError} from 'rxjs';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Register} from './register';
+import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';
 
 describe('Register Component', () => {
   let component: Register;
@@ -19,11 +20,25 @@ describe('Register Component', () => {
     toastrSpy = jasmine.createSpyObj('ToastrService', ['success', 'error']);
     routerSpy = jasmine.createSpyObj('Router', ['navigate']);
 
+    const translateServiceMock = {
+      currentLang: 'en',
+      use: jasmine.createSpy('use').and.returnValue(of('en')),
+      get: jasmine.createSpy('get').and.returnValue(of({})),
+      instant: jasmine.createSpy('instant').and.returnValue(''),
+      onLangChange: of({ lang: 'en', translations: {} }),
+      onTranslationChange: of({ translations: {} }),
+      onDefaultLangChange: of({ lang: 'en', translations: {} }),
+    };
+
+
     await TestBed.configureTestingModule({
       imports: [
         Register,
         ReactiveFormsModule,
         RouterTestingModule,
+        TranslateModule.forRoot({
+          loader: { provide: TranslateLoader, useValue: { getTranslation: () => of({}) } }
+        }),
       ],
       providers: [
         {provide: AuthService, useValue: authServiceSpy},
@@ -35,6 +50,7 @@ describe('Register Component', () => {
             queryParams: of({}),
           }
         },
+        {provide: TranslateService, useValue: translateServiceMock},
       ]
     }).compileComponents();
 

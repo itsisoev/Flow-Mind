@@ -1,11 +1,13 @@
 import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
-import {ThemeService} from '../../core/services/theme';
+import {TranslatePipe} from '@ngx-translate/core';
 
 const STORAGE_KEY = 'dark-mode';
 
 @Component({
   selector: 'layout-theme-toggle',
-  imports: [],
+  imports: [
+    TranslatePipe
+  ],
   templateUrl: './theme-toggle.html',
   styleUrl: './theme-toggle.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

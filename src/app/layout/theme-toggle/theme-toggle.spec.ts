@@ -1,5 +1,7 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {ThemeToggle} from './theme-toggle';
+import {of} from 'rxjs';
+import {TranslateLoader, TranslateModule, TranslateService} from '@ngx-translate/core';
 
 describe('ThemeToggle Component', () => {
   let fixture: ComponentFixture<ThemeToggle>;
@@ -7,12 +9,30 @@ describe('ThemeToggle Component', () => {
 
   const STORAGE_KEY = 'dark-mode';
 
+  const translateServiceMock = {
+    currentLang: 'en',
+    use: jasmine.createSpy('use').and.returnValue(of('en')),
+    get: jasmine.createSpy('get').and.returnValue(of({})),
+    instant: jasmine.createSpy('instant').and.returnValue(''),
+    onLangChange: of({lang: 'en', translations: {}}),
+    onTranslationChange: of({translations: {}}),
+    onDefaultLangChange: of({lang: 'en', translations: {}}),
+  };
+
   beforeEach(async () => {
     localStorage.clear();
     document.body.className = '';
 
     await TestBed.configureTestingModule({
-      imports: [ThemeToggle],
+      imports: [
+        ThemeToggle,
+        TranslateModule.forRoot({
+          loader: {provide: TranslateLoader, useValue: {getTranslation: () => of({})}}
+        }),
+      ],
+      providers: [
+        {provide: TranslateService, useValue: translateServiceMock},
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(ThemeToggle);

@@ -4,12 +4,16 @@ import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {AuthService} from '../../../core/services/auth';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {TranslatePipe} from '@ngx-translate/core';
+import {Loader} from '../../../shared/components/loader/loader';
 
 @Component({
   selector: 'feature-login',
   imports: [
     RouterLink,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TranslatePipe,
+    Loader
   ],
   templateUrl: './login.html',
   styleUrls: ['./login.scss', '../auth.scss'],

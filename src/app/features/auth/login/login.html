@@ -1,7 +1,7 @@
 <div class="auth-container">
   <form class="auth-container__form" [formGroup]="authForm" (submit)="onSubmit()">
     <div class="auth-container__header">
-      <h3>Войти в аккаунт</h3>
+      <h3>{{'LOGIN_TO_ACCOUNT' | translate}}</h3>
     </div>
 
     <div class="input-group">
@@ -13,8 +13,12 @@
     </div>
 
     <div class="btns-group">
-      <button class="auth-button">Войти</button>
-      <a routerLink="/auth/register">Регистрация</a>
+      <button class="auth-button">{{'LOGIN' | translate}}</button>
+      <a routerLink="/auth/register">{{'REGISTER' | translate}}</a>
     </div>
   </form>
 </div>
+
+@if(isLoading()) {
+  <uc-loader />
+}
