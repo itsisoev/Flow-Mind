@@ -5,13 +5,15 @@ import {ToastrService} from 'ngx-toastr';
 import {AuthService} from '../../../core/services/auth';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {Loader} from '../../../shared/components/loader/loader';
+import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 
 @Component({
   selector: 'feature-register',
   imports: [
     RouterLink,
     ReactiveFormsModule,
-    Loader
+    Loader,
+    TranslatePipe
   ],
   templateUrl: './register.html',
   styleUrls: ['./register.scss', '../auth.scss'],

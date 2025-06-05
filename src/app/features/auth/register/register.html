@@ -1,7 +1,7 @@
 <div class="auth-container">
   <form class="auth-container__form" [formGroup]="authForm" (submit)="onSubmit()">
     <div class="auth-container__header">
-      <h3>Создать новый аккаунт</h3>
+      <h3>{{'CREATE_NEW_ACCOUNT' | translate}}</h3>
     </div>
 
     <div class="input-group">
@@ -13,8 +13,8 @@
     </div>
 
     <div class="btns-group">
-      <button class="auth-button">Создать аккаунт</button>
-      <a routerLink="/auth/login">Войти</a>
+      <button class="auth-button">{{'CREATE_ACCOUNT' | translate}}</button>
+      <a routerLink="/auth/login">{{'LOGIN' | translate}}</a>
     </div>
   </form>
 </div>

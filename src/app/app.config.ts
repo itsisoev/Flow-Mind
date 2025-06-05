@@ -1,16 +1,25 @@
-import {ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection} from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideBrowserGlobalErrorListeners,
+  provideZoneChangeDetection
+} from '@angular/core';
 import {provideRouter} from '@angular/router';
-
 import {routes} from './app.routes';
-import {provideHttpClient, withInterceptors} from '@angular/common/http';
+import {HttpClient, provideHttpClient, withInterceptors} from '@angular/common/http';
 import {provideAnimations} from '@angular/platform-browser/animations';
 import {provideToastr} from 'ngx-toastr';
 import {authInterceptor} from './core/interceptors/auth-interceptor';
 import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {createTranslateLoader} from './core/services/translate';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
+
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -32,5 +41,15 @@ export const appConfig: ApplicationConfig = {
       timeOut: 4000,
       preventDuplicates: true,
     }),
+    importProvidersFrom(
+      TranslateModule.forRoot({
+        defaultLanguage: 'en',
+        loader: {
+          provide: TranslateLoader,
+          useFactory: createTranslateLoader,
+          deps: [HttpClient],
+        },
+      })
+    ),
   ]
 };
