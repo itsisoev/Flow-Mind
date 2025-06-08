@@ -7,5 +7,9 @@
   "LOGIN": "Войти",
   "REGISTER": "Регистрация",
   "CREATE_NEW_ACCOUNT": "Создать новый аккаунт",
-  "CREATE_ACCOUNT": "Создать аккаунт"
+  "CREATE_ACCOUNT": "Создать аккаунт",
+  "TODAY": "Сегодня",
+  "UPCOMING": "Предстоящее",
+  "FILTERS_LABELS": "Фильтр и метки",
+  "MY_PROJECTS": "Мои проекты"
 }
