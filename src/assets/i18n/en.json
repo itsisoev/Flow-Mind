@@ -7,5 +7,9 @@
   "LOGIN": "Login",
   "REGISTER": "Register",
   "CREATE_NEW_ACCOUNT": "Create New Account",
-  "CREATE_ACCOUNT": "Create Account"
+  "CREATE_ACCOUNT": "Create Account",
+  "TODAY": "Today",
+  "UPCOMING": "Upcoming",
+  "FILTERS_LABELS": "Filters and labels",
+  "MY_PROJECTS": "My projects"
 }

@@ -17,22 +17,47 @@
         font-weight: bold;
         font-family: "Jura", sans-serif;
       }
-
-      .top-btns {
-        display: flex;
-        flex-direction: column;
-        gap: 0.9375rem;
-        margin-top: 1.25rem;
-      }
     }
 
     .top-links {
       margin-top: 1.25rem;
+
+      a {
+        gap: 1rem;
+        display: flex;
+      }
+    }
+
+    .top-toggle-projects {
+      margin-top: 1.25rem;
+    }
+
+    .projects {
+      display: flex;
+      align-items: center;
     }
   }
 
   &__bottom {
+    .bottom-btns {
+      gap: 0.9375rem;
+      display: flex;
+      flex-direction: column;
+    }
   }
+
+  .top-projects {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1.875rem;
+
+    .top-projects-btns {
+      display: flex;
+      gap: 0.9375rem;
+    }
+  }
+
 }
 
 @media (min-width: 768px) {

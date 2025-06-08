@@ -1,0 +1,53 @@
+<div class="modal-create">
+  <div class="modal-create__wrapper">
+    <div class="modal-create__header">
+      <h3>Добавить проект</h3>
+
+      <button class="btn-icon" (click)="onClose()">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
+          <path fill="currentColor"
+                d="M5.146 5.146a.5.5 0 0 1 .708 0L12 11.293l6.146-6.147a.5.5 0 0 1 .638-.057l.07.057a.5.5 0 0 1 0 .708L12.707 12l6.147 6.146a.5.5 0 0 1 .057.638l-.057.07a.5.5 0 0 1-.708 0L12 12.707l-6.146 6.147a.5.5 0 0 1-.638.057l-.07-.057a.5.5 0 0 1 0-.708L11.293 12 5.146 5.854a.5.5 0 0 1-.057-.638z"></path>
+        </svg>
+      </button>
+    </div>
+
+    <form class="modal-create__form">
+      <div class="input-group">
+        <h2>Имя</h2>
+        <input type="text" class="auth-input">
+      </div>
+
+      <div class="input-group">
+        <h2>Цвет</h2>
+        <div class="color-selector">
+          <div class="color-options">
+            <input type="radio" name="color" id="color1" value="#ff9a14" checked>
+            <label for="color1" style="background-color: #ff9a14;"></label>
+
+            <input type="radio" name="color" id="color2" value="#e2725b">
+            <label for="color2" style="background-color: #e2725b;"></label>
+
+            <input type="radio" name="color" id="color3" value="#e2729e">
+            <label for="color3" style="background-color: #e2729e;"></label>
+
+            <input type="radio" name="color" id="color4" value="#a26ee5">
+            <label for="color4" style="background-color: #a26ee5;"></label>
+
+            <input type="radio" name="color" id="color5" value="#7b9ae4">
+            <label for="color5" style="background-color: #7b9ae4;"></label>
+
+            <input type="radio" name="color" id="color6" value="#6bc5d2">
+            <label for="color6" style="background-color: #6bc5d2;"></label>
+
+            <input type="radio" name="color" id="color7" value="#6bc58e">
+            <label for="color7" style="background-color: #6bc58e;"></label>
+
+            <input type="radio" name="color" id="color8" value="#93c47d">
+            <label for="color8" style="background-color: #93c47d;"></label>
+          </div>
+        </div>
+      </div>
+
+    </form>
+  </div>
+</div>
