@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed, fakeAsync, tick} from '@angular/core/testing'
 import {ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRoute, Router, RouterLink, UrlTree} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {AuthService} from '../../../core/services/auth';
+import {AuthService} from '../../../../core/services/auth';
 import {of, throwError} from 'rxjs';
 import {RouterTestingModule} from '@angular/router/testing';
 import {Register} from './register';

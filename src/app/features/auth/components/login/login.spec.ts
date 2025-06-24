@@ -3,7 +3,7 @@ import {Login} from './login';
 import {ReactiveFormsModule} from '@angular/forms';
 import {ActivatedRoute, Router, UrlTree} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
-import {AuthService} from '../../../core/services/auth';
+import {AuthService} from '../../../../core/services/auth';
 import {of, throwError} from 'rxjs';
 import {RouterTestingModule} from '@angular/router/testing';
 import {TranslateLoader, TranslateModule, TranslateService, TranslateStore} from '@ngx-translate/core';

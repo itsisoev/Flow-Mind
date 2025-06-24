@@ -2,10 +2,10 @@ import {ChangeDetectionStrategy, Component, DestroyRef, inject, signal} from '@a
 import {Router, RouterLink} from '@angular/router';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
-import {AuthService} from '../../../core/services/auth';
+import {AuthService} from '../../../../core/services/auth';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {TranslatePipe} from '@ngx-translate/core';
-import {Loader} from '../../../shared/components/loader/loader';
+import {Loader} from '../../../../shared/components/loader/loader';
 
 @Component({
   selector: 'feature-login',
@@ -16,7 +16,7 @@ import {Loader} from '../../../shared/components/loader/loader';
     Loader
   ],
   templateUrl: './login.html',
-  styleUrls: ['./login.scss', '../auth.scss'],
+  styleUrls: ['./login.scss', '../../auth.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Login {

@@ -2,9 +2,9 @@ import {ChangeDetectionStrategy, Component, DestroyRef, inject, signal} from '@a
 import {Router, RouterLink} from '@angular/router';
 import {FormBuilder, ReactiveFormsModule, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
-import {AuthService} from '../../../core/services/auth';
+import {AuthService} from '../../../../core/services/auth';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {Loader} from '../../../shared/components/loader/loader';
+import {Loader} from '../../../../shared/components/loader/loader';
 import {TranslatePipe, TranslateService} from '@ngx-translate/core';
 
 @Component({
@@ -16,7 +16,7 @@ import {TranslatePipe, TranslateService} from '@ngx-translate/core';
     TranslatePipe
   ],
   templateUrl: './register.html',
-  styleUrls: ['./register.scss', '../auth.scss'],
+  styleUrls: ['./register.scss', '../../auth.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Register {

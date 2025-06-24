@@ -1,10 +1,15 @@
-import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal} from '@angular/core';
 import {ThemeToggle} from '../theme-toggle/theme-toggle';
 import {Translation} from '../translation/translation';
-import {TranslatePipe, TranslateService} from '@ngx-translate/core';
+import {TranslatePipe} from '@ngx-translate/core';
 import {RouterLink} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
-import {ModalCreateProject} from '../../shared/components/modal-create-project/modal-create-project';
+import {ModalCreateProject} from '../../features/projects/components/modal-create-project/modal-create-project';
+import {animate, style, transition, trigger} from '@angular/animations';
+import {ProjectService} from '../../features/projects/service/project';
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
+import {IProject} from '../../shared/models/project.model';
+import {NgStyle} from '@angular/common';
 
 export interface HeaderLink {
   label: string;
@@ -20,13 +25,27 @@ export interface HeaderLink {
     TranslatePipe,
     RouterLink,
     ModalCreateProject,
+    NgStyle,
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({ height: 0, opacity: 0 }),
+        animate('300ms ease-in-out', style({ height: '*', opacity: 1 }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-in-out', style({ height: 0, opacity: 0 }))
+      ])
+    ])
+  ]
 })
-export class Sidebar {
+export class Sidebar implements OnInit{
   private readonly sanitizer = inject(DomSanitizer)
+  private readonly projectService = inject(ProjectService);
+  private readonly destroyRef = inject(DestroyRef);
 
   links = signal<HeaderLink[]>([
     {
@@ -49,8 +68,14 @@ export class Sidebar {
   sidebarOpen = signal<boolean>(false);
   openModal = signal<boolean>(false);
 
+  projects = signal<IProject[]>([]);
+
   get isSidebarOpen(): boolean {
     return this.sidebarOpen();
+  }
+
+  ngOnInit() {
+    this.getAllProjects();
   }
 
   getSafeIcon(icon: string) {
@@ -63,5 +88,13 @@ export class Sidebar {
 
   openCreateModal() {
     this.openModal.set(!this.openModal());
+  }
+
+  getAllProjects() {
+    this.projectService.getUserProjects().pipe(
+      takeUntilDestroyed(this.destroyRef),
+    ).subscribe((projects) => {
+      this.projects.set(projects);
+    })
   }
 }

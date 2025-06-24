@@ -8,14 +8,14 @@ export const authRoutes: Routes = [
     children: [
       {
         path: 'login',
-        loadComponent: () => import('./login/login').then(m => m.Login),
+        loadComponent: () => import('./components/login/login').then(m => m.Login),
         data: {
           showHeader: false
         }
       },
       {
         path: 'register',
-        loadComponent: () => import('./register/register').then(m => m.Register),
+        loadComponent: () => import('./components/register/register').then(m => m.Register),
         data: {
           showHeader: false
         }
