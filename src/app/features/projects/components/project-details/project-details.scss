@@ -1,0 +1,61 @@
+.project-details {
+  margin-top: 0.625rem;
+  padding: 0.625rem;
+  &__header {
+    .title {
+    }
+  }
+
+  &__task {
+  }
+
+  &__btns {
+    margin-top: 1.875rem;
+
+
+    .add-btn {
+      width: 12.5rem;
+      height: 2.1875rem;
+      border-radius: 0.3125rem;
+      color: var(--text-color);
+      background-color: var(--sidebar-background);
+      display: flex;
+      align-items: center;
+      gap: 0.625rem;
+      padding: 0 0.625rem;
+    }
+  }
+
+  &__modal-added {
+    width: 100%;
+    margin-top: 1.25rem;
+    border-radius: 0.3125rem;
+    border: 1px solid var(--gray-600);
+    padding: 0.625rem;
+
+
+    .input-group {
+      gap: 0.625rem;
+      display: flex;
+      flex-direction: column;
+      padding: 0.825rem 0;
+      border-bottom: 1px solid var(--gray-300);
+
+      .title {
+        font-size: 1.0625rem;
+        height: 2.25rem;
+      }
+
+      .desc {
+        height: 1rem;
+        font-size: 15px;
+      }
+
+      input {
+        width: 100%;
+        color: var(--text-color);
+        background-color: transparent;
+      }
+    }
+  }
+}

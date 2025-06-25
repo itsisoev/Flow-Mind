@@ -1,42 +1,46 @@
-import {ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal} from '@angular/core';
+import {ChangeDetectionStrategy, Component, DestroyRef, inject, signal} from '@angular/core';
 import {ProjectService} from '../../service/project';
 import {ToastrService} from 'ngx-toastr';
-import {takeUntilDestroyed, toSignal} from '@angular/core/rxjs-interop';
+import {takeUntilDestroyed, toObservable, toSignal} from '@angular/core/rxjs-interop';
 import {ActivatedRoute} from '@angular/router';
-import {map} from 'rxjs';
+import {filter, map, tap} from 'rxjs';
 import {IProject} from '../../../../shared/models/project.model';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'features-project-details',
-  imports: [],
+  imports: [
+    TranslatePipe
+  ],
   templateUrl: './project-details.html',
   styleUrl: './project-details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProjectDetails implements OnInit {
+export class ProjectDetails {
   private readonly projectService = inject(ProjectService);
   private readonly destroyRef = inject(DestroyRef);
   private readonly toastr = inject(ToastrService);
   private readonly route = inject(ActivatedRoute);
+
 
   readonly uuid = toSignal(this.route.paramMap.pipe(
     map(params => params.get('uuid') ?? '')
   ));
 
   project = signal<IProject | null>(null);
+  openModalAdd = signal<boolean>(false);
 
-
-  ngOnInit(): void {
-    this.getUserProject();
+  constructor() {
+    toObservable(this.uuid).pipe(
+      filter(Boolean),
+      tap(uuid => {
+        this.getUserProject(uuid)
+      }),
+      takeUntilDestroyed(this.destroyRef)
+    ).subscribe();
   }
 
-  getUserProject() {
-    const uuid = this.uuid();
-    if (!uuid) {
-      this.toastr.error('UUID не найден в URL');
-      return;
-    }
-
+  getUserProject(uuid: string): void {
     this.projectService.getUserProject(uuid).pipe(
       takeUntilDestroyed(this.destroyRef),
     ).subscribe({
@@ -46,5 +50,9 @@ export class ProjectDetails implements OnInit {
       error: (error) => {
       }
     })
+  }
+
+  isOpenModal() {
+    this.openModalAdd.set(!this.openModalAdd());
   }
 }

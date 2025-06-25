@@ -4,11 +4,13 @@ import {ToastrService} from 'ngx-toastr';
 import {ICreateProject} from '../../../../shared/models/project.model';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {FormsModule} from '@angular/forms';
+import {TranslatePipe} from '@ngx-translate/core';
 
 @Component({
   selector: 'features-modal-create-project',
   imports: [
-    FormsModule
+    FormsModule,
+    TranslatePipe
   ],
   templateUrl: './modal-create-project.html',
   styleUrl: './modal-create-project.scss',

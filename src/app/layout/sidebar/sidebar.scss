@@ -2,14 +2,15 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100vh;
+  height: 97vh;
   position: fixed;
   background-color: var(--sidebar-background);
   width: var(--sidebar-width);
   padding: 1.25rem;
   transition: transform 0.3s ease-in-out;
   z-index: 1000;
-
+  border-radius: 10px;
+  margin: 10px;
   &__top {
     .top-logo {
       h2 {
@@ -83,7 +84,7 @@
 
 @media (max-width: 767px) {
   .sidebar-container {
-    transform: translateX(-100%);
+    transform: translateX(-110%);
   }
 
   .sidebar-container.sidebar-open {

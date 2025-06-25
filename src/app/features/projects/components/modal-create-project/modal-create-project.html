@@ -1,7 +1,7 @@
 <div class="modal-create">
   <div class="modal-create__wrapper">
     <div class="modal-create__header">
-      <h3>Добавить проект</h3>
+      <h3>{{ 'ADD_PROJECT' | translate }}</h3>
 
       <button class="btn-icon" (click)="onClose()">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24">
@@ -13,13 +13,13 @@
 
     <form class="modal-create__form">
       <div class="input-group">
-        <h2>Имя</h2>
+        <h2>{{ 'NAME' | translate }}</h2>
         <input type="text" class="auth-input" [(ngModel)]="projectName"
                name="projectName">
       </div>
 
       <div class="input-group">
-        <h2>Цвет</h2>
+        <h2>{{ 'COLOR' | translate }}</h2>
         <div class="color-selector">
           <div class="color-options">
             @for (color of colors(); track color) {
@@ -31,7 +31,7 @@
         </div>
 
         <div class="btns-group">
-          <button type="submit" [disabled]="!projectName().trim()" (click)="createProject()">Create</button>
+          <button type="submit" [disabled]="!projectName().trim()" (click)="createProject()">{{ 'CREATE' | translate }}</button>
         </div>
       </div>
     </form>

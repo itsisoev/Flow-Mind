@@ -1,8 +1,14 @@
 .app-container {
-  gap: 6.25rem;
+  gap: 19.25rem;
   display: flex;
 
   &__router {
     width: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .app-container {
+    gap: 0;
   }
 }
