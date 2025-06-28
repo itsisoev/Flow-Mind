@@ -1,21 +1,60 @@
-<div class="project-details">
-  <div class="project-details__header">
-    <div class="title">
-      <h1>{{ project()?.title }}</h1>
-    </div>
+<div class="projects-details-header">
+  <div class="projects-details-header__title">
+    <h1>{{ project()?.title }}</h1>
   </div>
-  <div class="project-details__task"></div>
+</div>
 
-  @if (openModalAdd()) {
-    <div class="project-details__modal-added">
-      <div class="input-group">
-        <input class="title" type="text" placeholder="Починить велосипед">
-        <input class="desc" type="text" placeholder="Описание">
-      </div>
+<div class="project-board" cdkDropListGroup>
+  @for (status of statuses(); track status) {
+    <div class="board-column"
+         cdkDropList
+         [cdkDropListData]="tasksByStatus()[status]"
+         (cdkDropListDropped)="onTaskDrop($event, status)"
+    >
+      <h2>{{ getStatusLabel(status) }}</h2>
+
+      @for (task of filteredTasksByStatus(status); track task.uuid) {
+        <div class="task-wrapper" cdkDrag [cdkDragData]="task">
+          <div class="wrapper-main">
+            <div class="task-main">
+              <label>
+                <input type="checkbox"
+                       class="input"
+                       [(ngModel)]="task.done"
+                       (ngModelChange)="task.done && toggleTaskDone(task.uuid!, task.done)">
+                <span class="custom-checkbox"></span>
+              </label>
+              <p>{{ task.title }}</p>
+            </div>
+            <div class="task-options">
+              <button (click)="toggleTaskDescription(task.uuid!)">+</button>
+            </div>
+          </div>
+
+          @if (openedTaskUUID() === task.uuid) {
+            <div class="wrapper-desc">
+              <p>{{ task.description }}</p>
+              <div class="priority-term">
+                <span>Срок: {{ task.term | date: 'dd.MM.yyyy' }}</span>
+                <span>Приоритет: {{ task.priority }}</span>
+              </div>
+            </div>
+          }
+        </div>
+      }
     </div>
   }
+</div>
 
-  <div class="project-details__btns">
+@if (openModalAdd()) {
+  <features-create-task
+    [uuid]="uuid() ?? null"
+    [(isOpenModal)]="openModalAdd"
+  />
+}
+
+<div class="project-details__btns">
+  @if (!openModalAdd()) {
     <button class="add-btn" (click)="isOpenModal()">
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
            class="board_add_section_button__icon">
@@ -24,6 +63,5 @@
       </svg>
       {{ 'ADD_TASK' | translate }}
     </button>
-  </div>
+  }
 </div>
-

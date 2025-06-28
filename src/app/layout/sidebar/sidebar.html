@@ -32,19 +32,19 @@
 
 
     <div class="top-toggle-projects" [@slideInOut]>
-        @for (project of projects(); track project) {
-            <a [routerLink]="['', project.uuid]">
-              <div class="projects" [ngStyle]="{ backgroundColor: project.color }">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
-                     class="Fego6xD">
-                  <path fill="currentColor" fill-rule="evenodd"
-                        d="M15.994 6.082a.5.5 0 1 0-.987-.164L14.493 9h-3.986l.486-2.918a.5.5 0 1 0-.986-.164L9.493 9H7a.5.5 0 1 0 0 1h2.326l-.666 4H6a.5.5 0 0 0 0 1h2.493l-.486 2.918a.5.5 0 1 0 .986.164L9.507 15h3.986l-.486 2.918a.5.5 0 1 0 .987.164L14.507 15H17a.5.5 0 1 0 0-1h-2.326l.667-4H18a.5.5 0 1 0 0-1h-2.493zM14.327 10H10.34l-.667 4h3.987z"
-                        clip-rule="evenodd"></path>
-                </svg>
-                <span>{{ project.title }}</span>
-              </div>
-            </a>
-        }
+      @for (project of projects(); track project) {
+        <a [routerLink]="['', project.uuid]">
+          <div class="projects" [ngStyle]="{ backgroundColor: project.color }">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
+                 class="Fego6xD">
+              <path fill="currentColor" fill-rule="evenodd"
+                    d="M15.994 6.082a.5.5 0 1 0-.987-.164L14.493 9h-3.986l.486-2.918a.5.5 0 1 0-.986-.164L9.493 9H7a.5.5 0 1 0 0 1h2.326l-.666 4H6a.5.5 0 0 0 0 1h2.493l-.486 2.918a.5.5 0 1 0 .986.164L9.507 15h3.986l-.486 2.918a.5.5 0 1 0 .987.164L14.507 15H17a.5.5 0 1 0 0-1h-2.326l.667-4H18a.5.5 0 1 0 0-1h-2.493zM14.327 10H10.34l-.667 4h3.987z"
+                    clip-rule="evenodd"></path>
+            </svg>
+            <span>{{ project.title }}</span>
+          </div>
+        </a>
+      }
     </div>
   </div>
 
@@ -81,5 +81,5 @@
 </button>
 
 @if (openModal()) {
-  <features-modal-create-project (closeModal)="openModal.set(false)"/>
+  <features-modal-create-project (closeModal)="openModal.set(false)" (projectCreated)="onProjectCreated($event)"/>
 }

@@ -31,9 +31,15 @@
         </div>
 
         <div class="btns-group">
-          <button type="submit" [disabled]="!projectName().trim()" (click)="createProject()">{{ 'CREATE' | translate }}</button>
+          <button type="submit" [disabled]="!projectName().trim()"
+                  (click)="createProject()">{{ 'CREATE' | translate }}
+          </button>
         </div>
       </div>
     </form>
   </div>
 </div>
+
+@if (isLoading()) {
+  <uc-loader/>
+}

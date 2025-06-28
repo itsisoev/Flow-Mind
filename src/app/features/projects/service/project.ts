@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {environment} from '../../../../environments/environment.development';
 import {HttpClient} from '@angular/common/http';
-import {ICreateProject, IProject} from '../../../shared/models/project.model';
+import {ICreateProject, IProject, ITask} from '../../../shared/models/project.model';
 import {Observable} from 'rxjs';
 
 @Injectable({
@@ -22,4 +22,17 @@ export class ProjectService {
   getUserProject(uuid: string): Observable<IProject> {
     return this.http.get<IProject>(this.baseAPI + '/' + uuid);
   }
+
+  addTaskToProject(projectUUID: string, task: ITask): Observable<ITask> {
+    return this.http.post<ITask>(`${this.baseAPI}/${projectUUID}/task`, task);
+  }
+
+  getProjectTasks(projectUUID: string): Observable<ITask[]> {
+    return this.http.get<ITask[]>(`${this.baseAPI}/${projectUUID}/tasks`);
+  }
+
+  updateTaskStatus(taskUUID: string, done: boolean, status?: 'todo' | 'in-progress' | 'done') {
+    return this.http.patch(`${this.baseAPI}/tasks/${taskUUID}`, {done, status});
+  }
+
 }

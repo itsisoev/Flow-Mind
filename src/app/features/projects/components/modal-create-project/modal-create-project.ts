@@ -5,12 +5,14 @@ import {ICreateProject} from '../../../../shared/models/project.model';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 import {FormsModule} from '@angular/forms';
 import {TranslatePipe} from '@ngx-translate/core';
+import {Loader} from '../../../../shared/components/loader/loader';
 
 @Component({
   selector: 'features-modal-create-project',
   imports: [
     FormsModule,
-    TranslatePipe
+    TranslatePipe,
+    Loader
   ],
   templateUrl: './modal-create-project.html',
   styleUrl: './modal-create-project.scss',
@@ -21,6 +23,9 @@ export class ModalCreateProject {
   private readonly destroyRef = inject(DestroyRef);
   private readonly toastr = inject(ToastrService);
 
+  projectCreated = output<ICreateProject>();
+  closeModal = output();
+
   projectName = signal<string>('');
   selectedColor = signal<string>('#ff9a14');
   colors = signal<string[]>([
@@ -28,13 +33,14 @@ export class ModalCreateProject {
     '#a26ee5', '#7b9ae4', '#6bc5d2',
     '#6bc58e', '#93c47d'
   ]);
-  closeModal = output();
+  isLoading = signal<boolean>(false);
 
   onClose() {
     this.closeModal.emit()
   }
 
   createProject() {
+    this.isLoading.set(true);
     const trimmedName = this.projectName().trim();
 
     if (!trimmedName) {
@@ -56,10 +62,12 @@ export class ModalCreateProject {
           this.projectName.set('');
           this.selectedColor.set('#ff9a14');
           this.closeModal.emit();
+          this.projectCreated.emit(res);
+          this.isLoading.set(false);
         },
-        error: (err) => {
+        error: () => {
+          this.isLoading.set(false);
           this.toastr.error('Ошибка при создании проекта');
-          console.error(err);
         },
       });
   }

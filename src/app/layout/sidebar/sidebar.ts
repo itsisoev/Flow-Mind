@@ -2,13 +2,13 @@ import {ChangeDetectionStrategy, Component, DestroyRef, inject, OnInit, signal} 
 import {ThemeToggle} from '../theme-toggle/theme-toggle';
 import {Translation} from '../translation/translation';
 import {TranslatePipe} from '@ngx-translate/core';
-import {RouterLink} from '@angular/router';
+import {NavigationEnd, Router, RouterLink} from '@angular/router';
 import {DomSanitizer} from '@angular/platform-browser';
 import {ModalCreateProject} from '../../features/projects/components/modal-create-project/modal-create-project';
 import {animate, style, transition, trigger} from '@angular/animations';
 import {ProjectService} from '../../features/projects/service/project';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {IProject} from '../../shared/models/project.model';
+import {ICreateProject, IProject} from '../../shared/models/project.model';
 import {NgStyle} from '@angular/common';
 
 export interface HeaderLink {
@@ -33,19 +33,20 @@ export interface HeaderLink {
   animations: [
     trigger('slideInOut', [
       transition(':enter', [
-        style({ height: 0, opacity: 0 }),
-        animate('300ms ease-in-out', style({ height: '*', opacity: 1 }))
+        style({height: 0, opacity: 0}),
+        animate('300ms ease-in-out', style({height: '*', opacity: 1}))
       ]),
       transition(':leave', [
-        animate('300ms ease-in-out', style({ height: 0, opacity: 0 }))
+        animate('300ms ease-in-out', style({height: 0, opacity: 0}))
       ])
     ])
   ]
 })
-export class Sidebar implements OnInit{
+export class Sidebar implements OnInit {
   private readonly sanitizer = inject(DomSanitizer)
   private readonly projectService = inject(ProjectService);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly router = inject(Router);
 
   links = signal<HeaderLink[]>([
     {
@@ -74,6 +75,14 @@ export class Sidebar implements OnInit{
     return this.sidebarOpen();
   }
 
+  constructor() {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd && window.innerWidth < 768) {
+        this.sidebarOpen.set(false);
+      }
+    });
+  }
+
   ngOnInit() {
     this.getAllProjects();
   }
@@ -96,5 +105,11 @@ export class Sidebar implements OnInit{
     ).subscribe((projects) => {
       this.projects.set(projects);
     })
+  }
+
+  onProjectCreated(project: any) {
+    const currentProjects = this.projects();
+    this.projects.set([...currentProjects, project]);
+    this.openModal.set(false);
   }
 }
