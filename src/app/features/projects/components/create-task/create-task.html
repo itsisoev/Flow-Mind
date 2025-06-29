@@ -1,27 +1,34 @@
-<form [formGroup]="taskForm" (ngSubmit)="submitTask()" class="modal-added">
-  <div class="input-group">
-    <input class="custom-input" type="text" placeholder="Починить велосипед" formControlName="title">
-    <textarea class="custom-textarea" placeholder="Описание задачи..." formControlName="description"></textarea>
+<div class="modal-backdrop" (click)="closeModal()">
+  <form
+    [formGroup]="taskForm"
+    (ngSubmit)="submitTask()"
+    class="modal-form"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="input-group">
+      <input class="custom-input" type="text" placeholder="Починить велосипед" formControlName="title"/>
+      <textarea class="custom-textarea" placeholder="Описание задачи..." formControlName="description"></textarea>
 
-    <div class="wrapper-inputs">
-      <div>
-        <label for="date" class="date-label">Срок</label>
-        <input id="date" type="date" class="custom-date-input" formControlName="term"/>
-      </div>
+      <div class="wrapper-inputs">
+        <div>
+          <label for="date" class="date-label">Срок</label>
+          <input id="date" type="date" class="custom-date-input" formControlName="term"/>
+        </div>
 
-      <div>
-        <label for="priority" class="priority-label">Приоритет</label>
-        <select id="priority" class="custom-select" formControlName="priority">
-          <option value="high">Очень важно</option>
-          <option value="medium">Средне</option>
-          <option value="low">Не важно</option>
-        </select>
+        <div>
+          <label for="priority" class="priority-label">Приоритет</label>
+          <select id="priority" class="custom-select" formControlName="priority">
+            <option value="high">Очень важно</option>
+            <option value="medium">Средне</option>
+            <option value="low">Не важно</option>
+          </select>
+        </div>
       </div>
     </div>
-  </div>
 
-  <div class="btns-group">
-    <button class="btn save" type="submit">Сохранить</button>
-    <button class="btn cancel" (click)="closeModal()">Отменить</button>
-  </div>
-</form>
+    <div class="btns-group">
+      <button class="btn save" type="submit">Сохранить</button>
+      <button class="btn cancel" type="button" (click)="closeModal()">Отменить</button>
+    </div>
+  </form>
+</div>
