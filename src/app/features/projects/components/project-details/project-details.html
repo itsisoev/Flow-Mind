@@ -14,16 +14,9 @@
       <h2>{{ getStatusLabel(status) }}</h2>
 
       @for (task of filteredTasksByStatus(status); track task.uuid) {
-        <div class="task-wrapper" cdkDrag [cdkDragData]="task">
+        <div class="task-wrapper" cdkDrag [cdkDragData]="task" [style.border-left]="'3px solid ' + project()?.color">
           <div class="wrapper-main">
             <div class="task-main">
-              <label>
-                <input type="checkbox"
-                       class="input"
-                       [(ngModel)]="task.done"
-                       (ngModelChange)="task.done && toggleTaskDone(task.uuid!, task.done)">
-                <span class="custom-checkbox"></span>
-              </label>
               <p>{{ task.title }}</p>
             </div>
             <div class="task-options">
@@ -42,6 +35,12 @@
           }
         </div>
       }
+
+      @if (status === 'todo' && !openModalAdd()) {
+        <button class="add-btn" (click)="isOpenModal()">
+          {{ 'ADD_TASK' | translate }}
+        </button>
+      }
     </div>
   }
 </div>
@@ -52,16 +51,3 @@
     [(isOpenModal)]="openModalAdd"
   />
 }
-
-<div class="project-details__btns">
-  @if (!openModalAdd()) {
-    <button class="add-btn" (click)="isOpenModal()">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-           class="board_add_section_button__icon">
-        <path fill="currentColor"
-              d="M19.5 20a.5.5 0 0 1 0 1h-15a.5.5 0 0 1 0-1zM18 6a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2zm0 1H6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V8a1 1 0 0 0-1-1m-6 2a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 12 9m7.5-6a.5.5 0 0 1 0 1h-15a.5.5 0 0 1 0-1z"></path>
-      </svg>
-      {{ 'ADD_TASK' | translate }}
-    </button>
-  }
-</div>

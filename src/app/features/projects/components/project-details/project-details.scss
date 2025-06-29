@@ -1,21 +1,25 @@
 .projects-details-header {
   margin: 20px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
 
   &__title {
+    gap: 1.25rem;
+    display: flex;
+    align-items: center;
 
   }
 }
 
-/* Основные стили доски */
 .project-board {
   display: flex;
   gap: 1.5rem;
   padding: 1rem;
   overflow-x: auto;
   align-items: flex-start;
-  height: calc(100vh - 120px);
 
-  /* Кастомный скроллбар для горизонтальной прокрутки */
   &::-webkit-scrollbar {
     height: 8px;
   }
@@ -35,7 +39,6 @@
   }
 }
 
-/* Стили колонок */
 .board-column {
   background-color: #f4f5f7;
   border-radius: 12px;
@@ -57,7 +60,6 @@
     padding: 0 8px;
   }
 
-  /* Контейнер для задач с вертикальным скроллом */
   .tasks-container {
     flex-grow: 1;
     overflow-y: auto;
@@ -82,7 +84,6 @@
     }
   }
 
-  /* Стили карточек задач */
   .task-wrapper {
     background-color: #fff;
     border-radius: 8px;
@@ -186,7 +187,6 @@
       }
     }
 
-    /* Анимации перетаскивания */
     &.cdk-drag-preview {
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
       transform: rotate(3deg);
@@ -207,7 +207,6 @@
     }
   }
 
-  /* Анимации для колонки при перетаскивании */
   &.cdk-drop-list-dragging {
     background-color: #ebecf0;
 
@@ -216,8 +215,15 @@
     }
   }
 
-  /* Эффект при наведении на колонку */
   &.cdk-drop-list-receiving {
     background-color: #e6f7ff;
   }
+}
+
+.add-btn {
+  width: 100%;
+  height: 5.25rem;
+  border: 1px dashed black;
+  background-color: transparent;
+  border-radius: 0.625rem;
 }
