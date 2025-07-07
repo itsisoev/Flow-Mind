@@ -8,8 +8,7 @@ import {ModalCreateProject} from '../../features/projects/components/modal-creat
 import {animate, style, transition, trigger} from '@angular/animations';
 import {ProjectService} from '../../features/projects/service/project';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
-import {ICreateProject, IProject} from '../../shared/models/project.model';
-import {NgStyle} from '@angular/common';
+import {IProject} from '../../shared/models/project.model';
 
 export interface HeaderLink {
   label: string;
@@ -25,7 +24,6 @@ export interface HeaderLink {
     TranslatePipe,
     RouterLink,
     ModalCreateProject,
-    NgStyle,
   ],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.scss',

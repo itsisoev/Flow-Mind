@@ -16,5 +16,11 @@
   "ADD_PROJECT": "Добавить проект",
   "COLOR": "Цвет",
   "NAME": "Имя",
-  "ADD_TASK": "Добавить задачу"
+  "ADD_TASK": "Добавить задачу",
+  "PRIORITY_VERY_LOW": "Очень низкий",
+  "PRIORITY_LOW": "Не важно",
+  "PRIORITY_MEDIUM": "Средне",
+  "PRIORITY_HIGH": "Важно",
+  "PRIORITY_URGENT": "Очень важно",
+  "DELETE": "Удалить"
 }

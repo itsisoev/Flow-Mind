@@ -39,3 +39,20 @@ button {
   color: var(--text-color);
   background-color: transparent;
 }
+
+button:hover,
+.sidebar-button:hover,
+.hamburger-menu:hover,
+.auth-button:hover,
+.btn-icon:hover {
+  color: var(--accent-500);
+}
+
+.auth-button {
+  color: var(--button-auth-text);
+}
+
+.auth-button:hover {
+  background-color: var(--accent-700);
+  color: var(--button-auth-text);
+}
