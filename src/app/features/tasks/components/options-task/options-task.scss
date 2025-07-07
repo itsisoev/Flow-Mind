@@ -1,0 +1,55 @@
+.toggle-container {
+  position: relative;
+  display: inline-block;
+}
+
+.btn-options {
+  width: 100%;
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+}
+
+
+.dark-theme .btn-icon:hover {
+  background-color: var(--gray-700);
+}
+
+.options-wrapper {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: -17px;
+  min-width: 200px;
+  padding: 1rem;
+  background-color: var(--background-card);
+  border: 1px solid var(--border-accent);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  animation: slideDown 0.25s ease forwards;
+}
+
+.participants-tree {
+  list-style: none;
+  padding: 0;
+  margin-top: 0.5rem;
+  border-top: 1px solid var(--border-accent);
+}
+
+.participants-tree li {
+  font-size: 0.875rem;
+  margin-left: 0.26rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

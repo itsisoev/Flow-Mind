@@ -16,5 +16,11 @@
   "ADD_PROJECT": "Add a project",
   "COLOR": "Color",
   "NAME": "Name",
-  "ADD_TASK": "Add a task"
+  "ADD_TASK": "Add a task",
+  "PRIORITY_VERY_LOW": "Very Low",
+  "PRIORITY_LOW": "Low",
+  "PRIORITY_MEDIUM": "Medium",
+  "PRIORITY_HIGH": "High",
+  "PRIORITY_URGENT": "Urgent",
+  "DELETE": "Delete"
 }

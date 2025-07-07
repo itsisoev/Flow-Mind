@@ -18,9 +18,11 @@
         <div>
           <label for="priority" class="priority-label">Приоритет</label>
           <select id="priority" class="custom-select" formControlName="priority">
-            <option value="high">Очень важно</option>
-            <option value="medium">Средне</option>
-            <option value="low">Не важно</option>
+            @for (priority of priorities(); track priority) {
+              <option [value]="priority.value">
+                {{ priority.label | translate }}
+              </option>
+            }
           </select>
         </div>
       </div>

@@ -2,6 +2,10 @@
   <div class="projects-details-header__title">
     <h1>{{ project()?.title }}</h1>
   </div>
+
+  <div class="projects-details-header__options">
+    <features-search-user [projectUUID]="project()?.uuid"/>
+  </div>
 </div>
 
 <div class="project-board" cdkDropListGroup>
@@ -14,13 +18,24 @@
       <h2>{{ getStatusLabel(status) }}</h2>
 
       @for (task of filteredTasksByStatus(status); track task.uuid) {
-        <div class="task-wrapper" cdkDrag [cdkDragData]="task" [style.border-left]="'3px solid ' + project()?.color">
+        <div class="task-wrapper" cdkDrag [cdkDragData]="task"
+             [style.border-left]="'3px solid ' + getPriorityColor(task.priority)">
           <div class="wrapper-main">
             <div class="task-main">
               <p>{{ task.title }}</p>
             </div>
             <div class="task-options">
-              <button (click)="toggleTaskDescription(task.uuid!)">+</button>
+              <button (click)="toggleTaskDescription(task.uuid!)" class="btn-icon" style="height: fit-content">
+                <svg viewBox="0 0 24 24" width="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <path d="M6 12H18M12 6V18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                          stroke-linejoin="round"></path>
+                  </g>
+                </svg>
+              </button>
+              <features-options-task [taskUUID]="task.uuid" [participants]="project()?.participants"/>
             </div>
           </div>
 
@@ -31,6 +46,9 @@
                 <span>Срок: {{ task.term | date: 'dd.MM.yyyy' }}</span>
                 <span>Приоритет: {{ task.priority }}</span>
               </div>
+              @if (task.owner) {
+                <p>Задача у : {{ task.owner.username }}</p>
+              }
             </div>
           }
         </div>

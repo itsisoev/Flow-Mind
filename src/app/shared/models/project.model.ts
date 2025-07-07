@@ -1,4 +1,6 @@
-export type TaskPriority = 'low' | 'medium' | 'high';
+import {IUser} from './user.model';
+
+export type TaskPriority = 'very-low' | 'low' | 'medium' | 'high' | 'urgent';
 export type TaskStatus = 'todo' | 'in-progress' | 'done';
 
 export interface ITask {
@@ -9,6 +11,7 @@ export interface ITask {
   priority?: TaskPriority;
   term?: Date;
   status?: TaskStatus;
+  owner:  IUser;
 }
 
 export interface IProject {
@@ -17,6 +20,7 @@ export interface IProject {
   tasks: ITask[];
   color?: string;
   createdAt: string;
+  participants: IUser[];
 }
 
 export interface ICreateProject {

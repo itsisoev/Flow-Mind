@@ -34,7 +34,7 @@
     <div class="top-toggle-projects" [@slideInOut]>
       @for (project of projects(); track project) {
         <a [routerLink]="['', project.uuid]">
-          <div class="projects" [ngStyle]="{ backgroundColor: project.color }">
+          <div class="projects">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24"
                  class="Fego6xD">
               <path fill="currentColor" fill-rule="evenodd"

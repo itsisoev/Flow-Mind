@@ -35,4 +35,22 @@ export class ProjectService {
     return this.http.patch(`${this.baseAPI}/tasks/${taskUUID}`, {done, status});
   }
 
+  deleteTask(taskUUID: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseAPI}/tasks/${taskUUID}`);
+  }
+
+  addParticipant(projectUUID: string, participantUUID: string): Observable<any> {
+    return this.http.post(
+      `${this.baseAPI}/${projectUUID}/participants/${participantUUID}`,
+      {},
+    );
+  }
+
+  transferTask(taskUUID: string, toUserUUID: string) {
+    return this.http.post(`${this.baseAPI}/tasks/${taskUUID}/transfer/${toUserUUID}`, {});
+  }
+
+  getProjectUsers(projectUUID: string): Observable<{ uuid: string; name: string }[]> {
+    return this.http.get<{ uuid: string; name: string }[]>(`${this.baseAPI}/${projectUUID}/users`);
+  }
 }

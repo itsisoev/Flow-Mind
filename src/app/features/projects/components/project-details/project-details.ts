@@ -7,10 +7,12 @@ import {filter, map, tap} from 'rxjs';
 import {IProject, ITask, TaskStatus} from '../../../../shared/models/project.model';
 import {TranslatePipe} from '@ngx-translate/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {CreateTask} from '../create-task/create-task';
+import {CreateTask} from '../../../tasks/components/create-task/create-task';
 import {DatePipe} from '@angular/common';
 import {CdkDragDrop, DragDropModule, transferArrayItem} from '@angular/cdk/drag-drop';
-
+import {PRIORITY_COLORS} from '../../../../shared/constants/priority';
+import {OptionsTask} from '../../../tasks/components/options-task/options-task';
+import {SearchUser} from './components/search-user/search-user';
 
 @Component({
   selector: 'features-project-details',
@@ -21,6 +23,8 @@ import {CdkDragDrop, DragDropModule, transferArrayItem} from '@angular/cdk/drag-
     DatePipe,
     FormsModule,
     DragDropModule,
+    OptionsTask,
+    SearchUser,
   ],
   templateUrl: './project-details.html',
   styleUrl: './project-details.scss',
@@ -31,6 +35,7 @@ export class ProjectDetails {
   private readonly destroyRef = inject(DestroyRef);
   private readonly toastr = inject(ToastrService);
   private readonly route = inject(ActivatedRoute);
+
 
   readonly uuid = toSignal(this.route.paramMap.pipe(
     map(params => params.get('uuid') ?? '')
@@ -155,5 +160,11 @@ export class ProjectDetails {
         event.currentIndex
       );
     }
+  }
+
+  getPriorityColor(priority: ITask['priority'] | undefined): string {
+    return priority && priority in PRIORITY_COLORS
+      ? PRIORITY_COLORS[priority]
+      : '#ccc';
   }
 }
